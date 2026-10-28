@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CloudNest — File Storage</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar"><div class="brand"><span class="logo">☁</span><div><strong>CloudNest</strong><small>Private file storage</small></div></div><div id="userArea"></div></header>
+    <section id="authPanel" class="auth-card">
+      <div><p class="eyebrow">YOUR FILES, ORGANIZED</p><h1>Everything in one safe place.</h1><p class="muted">Upload, organize, preview and share your files.</p></div>
+      <form id="authForm">
+        <label>Email<input type="email" name="email" placeholder="you@example.com" required></label>
+        <label>Password<input type="password" name="password" minlength="8" placeholder="At least 8 characters" required></label>
+        <div class="actions"><button type="submit" name="mode" value="login" class="btn primary">Log in</button><button type="submit" name="mode" value="register" class="btn secondary">Create account</button></div>
+      </form><p id="authError" class="error" role="alert"></p>
+    </section>
+    <section id="appPanel" hidden>
+      <div class="welcome"><div><p class="eyebrow">YOUR WORKSPACE</p><h1>My files</h1><p class="muted">Keep your documents tidy and easy to find.</p></div><div class="storage"><div class="storage-line"><span>Storage used</span><strong id="storageText">0 MB / 100 MB</strong></div><div class="meter"><span id="storageBar"></span></div></div></div>
+      <div class="toolbar"><div class="breadcrumbs" id="breadcrumbs"></div><div class="actions"><button id="newFolder" class="btn secondary">＋ Folder</button><label class="btn primary upload-label">↑ Upload<input id="fileInput" type="file" hidden></label><button id="trashBtn" class="btn secondary">Trash</button><button id="logout" class="btn ghost">Log out</button></div></div>
+      <div class="search-row"><input id="searchInput" placeholder="Search files and folders…"><button id="searchBtn" class="btn secondary">Search</button><button id="clearSearch" class="btn ghost">Clear</button></div>
+      <div id="uploadStatus" class="upload-status" hidden><div id="uploadLabel">Uploading…</div><div class="meter"><span id="uploadBar"></span></div></div>
+      <p id="notice" role="status"></p>
+      <div class="table-wrap"><table><thead><tr><th>Name</th><th>Type</th><th>Size</th><th>Actions</th></tr></thead><tbody id="items"></tbody></table></div>
+      <p class="footnote">Deleted items can be restored for 7 days. Each account has a separate private workspace.</p>
+    </section>
+    <dialog id="previewDialog"><div class="dialog-head"><strong id="previewTitle">Preview</strong><button class="icon-btn" data-close="previewDialog">✕</button></div><div id="previewContent" class="preview-content"></div></dialog>
+    <dialog id="shareDialog"><div class="dialog-head"><strong>Share file</strong><button class="icon-btn" data-close="shareDialog">✕</button></div><form id="shareForm"><input type="hidden" name="fileId"><label>Expiry date (optional)<input type="datetime-local" name="expiresAt"></label><label>Password (optional)<input type="password" name="password" minlength="4" maxlength="128" placeholder="Leave blank for no password"></label><button class="btn primary" type="submit">Create share link</button></form><div id="shareResult"></div></dialog>
+  </main>
+  <script src="/app.js"></script>
+</body></html>
